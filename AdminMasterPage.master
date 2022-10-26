@@ -1,0 +1,213 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="AdminMasterPage.master.cs" Inherits="AdminMasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title>Admin | Socitey&More</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build" name="description" />
+    <meta content="Coderthemes" name="Abhimanyu R" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/city.png">
+
+    <!-- Bootstrap select pluings -->
+    <link href="assets/libs/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- c3 plugin css -->
+    <link rel="stylesheet" type="text/css" href="assets/libs/c3/c3.min.css">
+
+    <!-- App css -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+<body data-layout="horizontal">
+    <form id="form1" runat="server">
+        <div id="wrapper">
+            <!-- Navigation Bar-->
+            <header id="topnav">
+                <!-- Topbar Start -->
+                <div class="navbar-custom pt-1" style="background-color: #6334a7" >
+                    <div>  
+                     <div>
+                        <ul class="list-unstyled topnav-menu float-right mb-0">
+                            <li class="has-submenu">
+                                <a class="nav-link dropdown-toggle nav-user mr-1 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                    <asp:Repeater ID="RepeaterImage" runat="server">
+                                        <ItemTemplate>
+                                            <img src='data:<%#Eval("ContentType")%>;base64,<%# Eval("Image") != System.DBNull.Value ? Convert.ToBase64String((byte[])Eval("Image")) : string.Empty %>' alt="user-image" class="rounded-circle">
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                                    <!-- item-->
+                                    <div class="dropdown-header noti-title">
+                                        <h6 class="text-overflow m-0">Welcome, <asp:Label ID="lblUserName" runat="server" Text=""></asp:Label></h6>
+                                    </div>
+
+                                    
+                                    <!-- item-->
+                                    <a href="AdminProfile.aspx" class="dropdown-item notify-item">
+                                        <i class="fas fa-user-alt"></i>
+                                        <span>View Profile</span>
+                                    </a>
+
+                                    <div class="dropdown-divider"></div>
+                                    <!-- item-->
+                                    <a href="UserPage.aspx" class="dropdown-item notify-item">
+                                        <i class="fa fa-user-plus"></i>
+                                        <span>Add Admin</span>
+                                    </a>
+
+                                    <div class="dropdown-divider"></div>
+                                    <!-- item-->
+                                    <a href="LoginPage.aspx" class="dropdown-item notify-item">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        <span>Logout</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                        <!-- LOGO--> 
+                        <div class ="logo" >
+                             <h2 style="color:white"><img src="assets/images/citysmall.png" width="55" height="45"  alt=""> Society&More</h2>
+                          
+                        </div>
+
+                    </div>
+                </div>
+                <!-- end Topbar -->
+
+                <div class="topbar-menu">
+                    <div class="container-fluid">
+                        <div id="navigation">
+                            <!-- Navigation Menu-->
+                            <ul class="navigation-menu">
+
+                                <li class="has-submenu">
+                                    <a href="AdminDashBoard.aspx">
+                                        <i class="fab fa-delicious"></i>Dashboard
+                                    </a>
+                                </li>
+                                
+                                <li class="has-submenu">
+                                    <a href="SocietyPage.aspx">
+                                        <i class="fas fa-person-booth"></i>Societies
+                                    </a>
+                                </li>
+
+                                <li class="has-submenu">
+                                    <a href="HousePage.aspx">
+                                        <i class="fas fa-home"></i>House
+                                    </a>
+                                </li>
+                                <li class="has-submenu">
+                                    <a href="SocietyMember.aspx">
+                                        <i class="fas fa-portrait"></i>Member Directory
+                                    </a>
+                                </li>
+
+                                <!--li class="has-submenu">
+                                    <a href="HouseReportPage.aspx">
+                                        <i class="fas fa-poll"></i>House Report
+                                    </a>
+                                </li-->
+                                <li class="has-submenu">
+                                       <a href="#"><i class="fas fa-book"></i>Facility Booking
+                                     <div class="arrow-down"></div>
+                                    </a>
+                                    <ul class="submenu">
+                                        <li><a href="FacilityPage.aspx">View Booked</a></li>
+                                        <li><a href="FacilityUpdate.aspx">Update Booking</a></li>
+                                    </ul>
+                                </li>
+                                 <li class="has-submenu">
+                                    <a href="PollingBoothM.aspx">
+                                        <i class="fas fa-vote-yea"></i>Polling Booth
+                                    </a>
+                                </li>
+
+                                <li class="has-submenu">
+                                    <a href="SocietyPaymentM.aspx">
+                                        <i class="fa fa-wallet"></i>Society Payment
+                                    </a>
+                                </li>
+                                <li class="has-submenu">
+                                    <a href="ComplainPage.aspx">
+                                        <i class="fas fa-podcast"></i>Help Desk
+                                    </a>
+                                </li>
+                                <!--li class="has-submenu">
+                                    <a href="UserPage.aspx">
+                                        <i class="fas fa-user-alt"></i>User
+                                    </a>
+
+                                </!li-->
+                                <li class="has-submenu">
+                                    <a href="#"><i class="fas fa-poll"></i>Reports
+                                        <div class="arrow-down"></div>
+                                    </a>
+                                    <ul class="submenu">
+                                        <li><a href="PollReport.aspx">Poll Report</a></li>
+                                        <li><a href="HouseReportPage.aspx">House Report</a></li>
+                                        <li><a href="MemberReport.aspx">Member Report</a></li>
+                                    </ul>
+                                </li>
+                                <!--li class="has-submenu">
+                                    <a href="LoginPage.aspx">
+                                        <i class="fas fa-sign-out-alt"></i>Logout
+                                    </a>
+
+                                </li-->
+                            </ul>
+                            <!-- End navigation menu -->
+
+                            <div class="clearfix"></div>
+                        </div>
+                        <!-- end #navigation -->
+                    </div>
+                    <!-- end container -->
+                </div>
+                <!-- end navbar-custom -->
+
+            </header>
+            <div class="content-page">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+
+        </div>
+        <footer>
+    <style>
+        p.a {
+            text-align: center;
+        }
+
+        h2.t {
+            text-align: center;
+        }
+    </style>
+
+    <p class="a">&copy; <%: DateTime.Now.Year %> - Made by Abhimanyu R | 20CS1A1001<br /> & Zoya Khanam | 20CS1H1043</p>
+</footer>
+    </form>
+    <!-- Vendor js -->
+    <script src="assets/js/vendor.min.js"></script>
+    <!-- Bootstrap select plugin -->
+    <script src="assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
+    <!-- plugins -->
+    <script src="assets/libs/c3/c3.min.js"></script>
+    <script src="assets/libs/d3/d3.min.js"></script>
+    <!-- dashboard init -->
+    <script src="assets/js/pages/dashboard.init.js"></script>
+    <!-- App js -->
+    <script src="assets/js/app.min.js"></script>
+</body>
+</html>
